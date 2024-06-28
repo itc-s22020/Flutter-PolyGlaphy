@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:polygraphy/pages/polygraphy_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -6,11 +8,24 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+
       body: Center(
-        child: Text(
-          'Hello Flutter!'
-        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+                'Hello Flutter!'
+            ),
+            ElevatedButton(
+                onPressed: _toPolyGraphyPage,
+                child:Text("NextPage"))
+          ],
+        )
       ),
     );
   }
+}
+
+void _toPolyGraphyPage() {
+  Get.to(const PolyGraphyPage());
 }

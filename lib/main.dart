@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:polygraphy/pages/home_page.dart';
 
 void main() {
@@ -8,7 +9,11 @@ void main() {
     SystemUiOverlay.bottom
   ]);
 
-  runApp(const MyApp());
+  runApp(const GetMaterialApp(
+    title: 'PolyGraphy',
+    initialRoute: '/',
+    home: HomePage(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,8 +21,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return const GetMaterialApp(
       title: 'PolyGraphy',
+      initialRoute: '/',
       home: HomePage(),
     );
   }
