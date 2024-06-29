@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polygraphy/components/file_pick.dart';
 import '../getX/navigation.dart';
 
 class Home extends StatelessWidget {
@@ -12,7 +13,8 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Hello Flutter!'),
-            ElevatedButton(onPressed: toPolyGraphyPage, child:Text("NextPage"))
+            ElevatedButton(onPressed: toPolyGraphyPage, child:Text("NextPage")),
+            ElevatedButton(onPressed: filePick, child: Text("FilePick"))
           ],
         )
       ),
