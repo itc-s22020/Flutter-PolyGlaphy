@@ -39,6 +39,10 @@ dependencies:
   file_picker: ^8.0.5
   archive: ^3.6.1
 
+  polyglot:
+    git:
+      url: https://github.com/itc-s22020/Dart-Polyglot.git
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
