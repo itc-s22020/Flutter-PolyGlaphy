@@ -11,6 +11,7 @@ class Result extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text('result'),
               ElevatedButton(onPressed: toOffHomePage, child:Text("HomePage")),
             ],
           )

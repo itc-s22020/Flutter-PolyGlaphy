@@ -4,19 +4,19 @@ import '../pages/polygraphy.dart';
 import '../pages/result.dart';
 
 void toPolyGraphyPage() {
-  Get.to(const PolyGraphy());
+  Get.to(() => const PolyGraphy());
 }
 
 void toResultPage() {
-  Get.to(const Result());
+  Get.to(() => const Result());
 }
 
 void toHomePage() {
-  Get.to(const Home());
+  Get.to(() => const Home());
 }
 
 void toOffHomePage() {
-  Get.offAll(const Home());
+  Get.offAll(() => const Home());
 }
 
 void toBackPage() {
