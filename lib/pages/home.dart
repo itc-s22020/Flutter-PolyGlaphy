@@ -41,7 +41,7 @@ class Home extends StatelessWidget {
                           ),
                         const SizedBox(height: 16),
                         ElevatedButton.icon(
-                          icon: const Icon(Icons.file_upload),
+                          icon: const Icon(Icons.file_upload, color: Colors.white),
                           label: const Text("Select Image"),
                           onPressed: () async {
                             await coverFilePick();
@@ -63,7 +63,7 @@ class Home extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Obx(() => ElevatedButton.icon(
-                  icon: const Icon(Icons.navigate_next),
+                  icon: const Icon(Icons.navigate_next, color: Colors.white),
                   label: const Text("Next Page"),
                   onPressed: coverController.file.value.isEmpty
                       ? null

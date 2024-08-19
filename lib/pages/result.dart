@@ -55,7 +55,7 @@ class Result extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           ElevatedButton.icon(
-                            icon: const Icon(Icons.download),
+                            icon: const Icon(Icons.download, color: Colors.white),
                             label: const Text("Download File"),
                             onPressed: () => _downloadFile(polyglotC.file.value, "polyglot_data.png"),
                             style: ElevatedButton.styleFrom(
@@ -80,9 +80,9 @@ class Result extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             ElevatedButton.icon(
-              icon: const Icon(Icons.home),
+              icon: const Icon(Icons.home, color: Colors.white),
               label: const Text("Home"),
-              onPressed: toHomePage,
+              onPressed: toOffHomePage,
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white, backgroundColor: Colors.orange.shade600,
                 padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),

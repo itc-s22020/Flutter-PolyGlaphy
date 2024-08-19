@@ -63,7 +63,7 @@ class PolyGraphy extends StatelessWidget {
                       }),
                       const SizedBox(height: 16),
                       ElevatedButton.icon(
-                        icon: const Icon(Icons.file_upload),
+                        icon: const Icon(Icons.file_upload, color: Colors.white),
                         label: const Text("Select Polyglot Data"),
                         onPressed: () async {
                           await filePick();
@@ -84,7 +84,7 @@ class PolyGraphy extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Obx(() => ElevatedButton.icon(
-                  icon: const Icon(Icons.navigate_next),
+                  icon: const Icon(Icons.navigate_next, color: Colors.white),
                   label: const Text("Generate Polyglot"),
                   onPressed: (coverC.file.value.isNotEmpty &&
                           dataC.file.value.isNotEmpty)
