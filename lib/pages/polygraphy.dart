@@ -15,26 +15,100 @@ class PolyGraphy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DataController dataC = Get.put(DataController());
+    final CoverController coverC = Get.find<CoverController>();
+
     return Scaffold(
-      body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('polyGraphy'),
-              ElevatedButton(onPressed: _toResult, child: const Text("NextPage")),
-              const ElevatedButton(onPressed: filePick, child: Text("polyglotData Pick")),
-              const ElevatedButton(onPressed: toHomePage, child: Text("BackPage")),
-            ],
-          )
+      appBar: AppBar(
+        title: const Text('PolyGraphy'),
+        leading: const IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: toHomePage,
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.file_present,
+                          size: 64, color: Colors.green),
+                      const SizedBox(height: 16),
+                      Obx(() {
+                        if (dataC.file.value.isNotEmpty) {
+                          String fileName = dataC.fileName.value;
+                          String fileSize =
+                              '${(dataC.file.value.length / 1024).toStringAsFixed(2)} KB';
+                          return Column(
+                            children: [
+                              Text('File: $fileName',
+                                  style: const TextStyle(fontSize: 18)),
+                              Text('Size: $fileSize',
+                                  style: const TextStyle(fontSize: 18)),
+                            ],
+                          );
+                        } else {
+                          return const Text(
+                            'No polyglot data selected',
+                            style: TextStyle(fontSize: 18),
+                          );
+                        }
+                      }),
+                      const SizedBox(height: 16),
+                      ElevatedButton.icon(
+                        icon: const Icon(Icons.file_upload),
+                        label: const Text("Select Polyglot Data"),
+                        onPressed: () async {
+                          await filePick();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor:
+                          Colors.blue.shade700,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 16, horizontal: 24),
+                          textStyle: const TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Obx(() => ElevatedButton.icon(
+                  icon: const Icon(Icons.navigate_next),
+                  label: const Text("Generate Polyglot"),
+                  onPressed: (coverC.file.value.isNotEmpty &&
+                          dataC.file.value.isNotEmpty)
+                      ? () => toResult()
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.orange.shade600,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 24),
+                    textStyle: const TextStyle(fontSize: 16),
+                  ),
+                )),
+          ],
+        ),
       ),
     );
   }
 
-  Future<void> _toResult() async {
+  Future<void> toResult() async {
     toResultPage();
     Future.delayed(Duration.zero, () async {
-      final CoverController coverC = Get.put(CoverController());
-      final DataController dataC = Get.put(DataController());
+      final CoverController coverC = Get.find<CoverController>();
+      final DataController dataC = Get.find<DataController>();
 
       final coverData = coverC.getFile();
       final data = dataC.getFile();
@@ -45,7 +119,7 @@ class PolyGraphy extends StatelessWidget {
   Future<void> polyglotGenerate(Uint8List coverData, Uint8List data) async {
     final String? ext = checkExtensions(coverData);
     final PolyglotController polyglotC = Get.put(PolyglotController());
-    switch(ext){
+    switch (ext) {
       case 'png':
         final Uint8List polyglotData = pngPolyglot(coverData, data);
         polyglotC.setFile(polyglotData);
@@ -59,5 +133,3 @@ class PolyGraphy extends StatelessWidget {
     }
   }
 }
-
-

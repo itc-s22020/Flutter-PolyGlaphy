@@ -14,14 +14,17 @@ Future<void> filePick() async {
   );
 
   if (result != null && result.files.isNotEmpty) {
-    List<Map<String, dynamic>> files = result.files.map((file) => {
-      'name': file.name,
-      'data': file.bytes!,
-    }).toList();
+    for (var file in result.files) {
+      c.setFileName(file.name);
 
-    Uint8List? zipData = await compressFiles(files);
-    if (zipData != null) {
-      c.setFile(zipData);
+      Uint8List? zipData = await compressFiles([{
+        'name': file.name,
+        'data': file.bytes!,
+      }]);
+
+      if (zipData != null) {
+        c.setFile(zipData);
+      }
     }
   }
 }
