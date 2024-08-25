@@ -18,6 +18,7 @@ Future<void> coverFilePick() async {
     final PlatformFile file = result.files.first;
     if (kIsWeb) { c.setFile(file.bytes!); } else {
       c.setFile(await File(file.path!).readAsBytes());
+      c.setExtension();
     }
   }
 }
