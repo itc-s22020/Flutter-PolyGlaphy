@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:polyglot/jpeg/jpeg_polyglot.dart';
 import 'package:polyglot/png/png_polyglot.dart';
-import 'package:polygraphy/components/check_extension.dart';
 import 'package:polygraphy/components/file_pick.dart';
 import 'package:polygraphy/getX/cover_controller.dart';
 import 'package:polygraphy/getX/data_controller.dart';
@@ -117,8 +116,9 @@ class PolyGraphy extends StatelessWidget {
   }
 
   Future<void> polyglotGenerate(Uint8List coverData, Uint8List data) async {
-    final String? ext = checkExtensions(coverData);
     final PolyglotController polyglotC = Get.put(PolyglotController());
+    final CoverController coverC = Get.put(CoverController());
+    final String ext = coverC.getExtension();
     switch (ext) {
       case 'png':
         final Uint8List polyglotData = pngPolyglot(coverData, data);
