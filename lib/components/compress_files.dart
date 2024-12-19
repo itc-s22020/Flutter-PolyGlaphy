@@ -2,6 +2,10 @@ import 'dart:typed_data';
 import 'package:archive/archive.dart';
 
 Future<Uint8List?> compressFiles(List<Map<String, dynamic>> files) async {
+  if (files.length == 1 && files[0]['name'].endsWith('.zip')) {
+    return files[0]['data'] as Uint8List?;
+  }
+
   final encoder = ZipEncoder();
   final archive = Archive();
 
